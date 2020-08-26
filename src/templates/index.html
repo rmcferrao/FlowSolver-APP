@@ -1,0 +1,182 @@
+{% extends 'base.html' %} {% block content %}
+<!--- Image Slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#slides" data-slide-to="0" class="active"></li>
+    <li data-target="#slides" data-slide-to="1"></li>
+    <li data-target="#slides" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static', filename='img/background.png')}}" alt="" />
+      <div class="carousel-caption">
+        <h1 class="display-2">Bootstrap</h1>
+        <h3>Complete Website Layout</h3>
+        <button type="button" class="btn btn-outline-light btn-lg">
+          VIEW DEMO
+        </button>
+        <button type="button" class="btn btn-primary btn-lg">
+          Get Started
+        </button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='img/background2.png')}}"
+        alt=""
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ url_for('static', filename='img/background3.png')}}"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<!--- Jumbotron -->
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+      <p class="lead">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+        sollicitudin tincidunt ligula a ultricies.
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+      <a href="#"
+        ><button type="button" class="btn btn-outline-secondary btn-lg">
+          Web Hosting
+        </button></a
+      >
+    </div>
+  </div>
+</div>
+
+<!--- Welcome Section -->
+<div class="continer-fluid padding">
+  <div class="row welcome text-center">
+    <div class="col-12">
+      <h1 class="display-4">Built with ease.</h1>
+    </div>
+    <hr />
+    <div class="col-12">
+      <p class="lead">
+        Fusce facilisis odio sit amet tortor rutrum varius vel a tellus. Mauris
+        felis quam, vulputate commodo congue vitae, sollicitudin id metus.
+        Nullam dapibus, eros non dapibus commodo, metus ex pellentesque urna,
+        non mattis velit mauris ut lorem.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--- Three Column Section -->
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <i class="fas fa-code"></i>
+      <h3>HTML5</h3>
+      <p>Built with the latest version of HTML, HTML5.</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <i class="fas fa-bold"></i>
+      <h3>BOOTSTRAP</h3>
+      <p>Built with the latest version of Bootstrap, Bootstrap 4.</p>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <i class="fab fa-css3"></i>
+      <h3>BOOTSTRAP</h3>
+      <p>Built with the latest version of CSS, CSS3.</p>
+    </div>
+  </div>
+  <hr class="my-4" />
+</div>
+
+<!--- Two Column Section -->
+
+<div class="container-fluid padding">
+  <div class="row padding">
+    <div class="col-md-12 col-lg-6">
+      <h2>If you build it ...</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+        sollicitudin tincidunt ligula a ultricies. Sed ornare, nibh non accumsan
+        ultricies, nisi nunc fermentum est, quis consectetur velit nibh aliquam
+        ante.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+        sollicitudin tincidunt ligula a ultricies. Sed ornare, nibh non accumsan
+        ultricies, nisi nunc fermentum est, quis consectetur velit nibh aliquam
+        ante.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+        sollicitudin tincidunt ligula a ultricies. Sed ornare, nibh non accumsan
+        ultricies, nisi nunc fermentum est, quis consectetur velit nibh aliquam
+        ante.
+      </p>
+      <br />
+      <a href="#" class="btn btn-primary">Learn More</a>
+    </div>
+    <div class="col-lg-6">
+      <img
+        src="{{ url_for('static', filename='img/desk.png')}}"
+        class="img-fluid"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<hr class="my-4" />
+<!--- Fixed background -->
+<figure>
+  <div class="fixed-wrap">
+    <div id="fixed"></div>
+  </div>
+</figure>
+
+<!--- Emoji Section -->
+
+<button class="fun" data-toggle="collapse" data-target="#emoji">
+  click for fun
+</button>
+<div id="emoji" class="collapse">
+  <div class="container-fluid padding">
+    <div class="row text-center">
+      <div class="col-sm-6 col-md-3">
+        <img
+          src="{{ url_for('static', filename='img/gif/panda.gif')}}"
+          class="gif"
+          alt=""
+        />
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <img
+          src="{{ url_for('static', filename='img/gif/chicken.gif')}}"
+          class="gif"
+          alt=""
+        />
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <img
+          src="{{ url_for('static', filename='img/gif/poo.gif')}}"
+          class="gif"
+          alt=""
+        />
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <img
+          src="{{ url_for('static', filename='img/gif/unicorn.gif')}}"
+          class="gif"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

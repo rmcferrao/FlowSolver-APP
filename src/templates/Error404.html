@@ -1,0 +1,11 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="container-fluid h-100 bg-light text-dark">
+  <div class="row justify-content-center align-items-center">
+    <img
+    src="{{ url_for('static', filename='/img/404Error.png') }}"
+    class="img-fluid"
+    />
+  </div>
+</div>
+{% endblock %}

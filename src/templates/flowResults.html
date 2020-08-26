@@ -1,0 +1,111 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="container-fluid h-100 bg-light text-dark">
+  <div class="row justify-content-center align-items-center">
+    <h2 class="padding">Simulation Results</h2>
+  </div>
+  <hr />
+  <h5 class="text-center">Mesh:</h5>
+  <div class="row justify-content-center align-items-center">
+  <div class="col-sm-10 col-md-5 col-lg-3">
+    <img
+    src="{{ url_for('send_image', filename=image_names[0]) }}"
+    class="img-fluid"
+    />
+  </div>
+  <div class="w-100 m-4"><h5 class="text-center">Flow Fields:</h5></div>
+
+  <div class="col-sm-10 col-md-6 col-lg-4">
+    <img
+    src="{{ url_for('send_image', filename=image_names[1]) }}"
+    class="img-fluid"
+    />
+  </div>
+  
+  <br>
+  <div class="col-sm-10 col-md-6 col-lg-4">
+    <img
+    src="{{ url_for('send_image', filename=image_names[2]) }}"
+    class="img-fluid"
+    />
+  </div>
+</div>
+  </div>
+  <br>
+  <div id="convert-btn-div" class="text-center" style="display: block;">     
+    <a href="{{url_for('download_zip_results')}}" class="btn btn-primary">Download the Results!</a>
+  </div>
+  <br />
+
+  <br style="margin: 20px;" />
+</div>
+<br />
+<br />
+<br />
+
+{% endblock %} {% block script %}
+<script>
+  $("#rockMatrixPerm").addClass("collapse");
+
+  //on change hide all divs linked to select and show only linked to selected option
+  $("#flowEquation").change(function () {
+    //Saves in a variable the wanted div
+    if ($("#flowEquation option:selected").val() == "Brinkman") {
+      $("#rockMatrixPerm").collapse("show");
+    } else {
+      $("#rockMatrixPerm").collapse("hide");
+    }
+  });
+
+  $("#file-picker").change(function () {
+    readURL(this);
+    checkEXT();
+    changeButton();
+  });
+
+  $("#upload-form").change(function () {
+    changeButton();
+  });
+
+  function changeButton() {
+    var flowEquation = $("#flowEquation option:selected").val();
+    var radio = $("input[type=radio]:checked").length;
+    var inputImage = document.getElementById("file-picker").files.length;
+    var btn = document.getElementById("convert-btn-div");
+
+    if (flowEquation == "Stokes" && radio >= 2 && inputImage == 1) {
+      btn.style = "display:block";
+    } else if (flowEquation == "Brinkman" && radio == 3 && inputImage == 1) {
+      btn.style = "display:block";
+    } else {
+      btn.style = "display:none";
+    }
+  }
+
+  function checkEXT() {
+    var input = document.getElementById("file-picker");
+    var ext = input.files[0].name
+      .substr(input.files[0].name.lastIndexOf(".") + 1)
+      .toLowerCase();
+
+    if (ext == "jpg" || ext == "png" || ext == "jpeg") {
+      $("#msg").text("");
+    } else {
+      $("#msg").text("File is NOT supported");
+      document.getElementById("file-picker").value = "";
+    }
+  }
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#blah").attr("src", e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+</script>
+{% endblock %}

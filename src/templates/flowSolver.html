@@ -1,0 +1,258 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="row h-100 text-dark justify-content-center align-items-center pb-0">
+  <div class="col-xs-10 col-sm-10 col-md-6 col-lg-4 pb-0">
+    <h2 class="pb-2 text-center">Fluid Flow Simulation</h2>
+  <h6 class="text-center">From  <strong>binary images</strong> to velocity and pressure fields, using the Finite Element Method</h6>
+</div>
+</div>
+
+
+  <hr/>
+  <h5 class="text-center m-0">Simulation Environment:</h5>
+
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-11 col-sm-9 col-md-6 col-lg-4 p-2">
+      <hr/>
+      <form
+        id="macro-form"
+        action="{{url_for('flow_solver')}}"
+        runat="server"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <!-- Flow Equation -->
+
+        <div class="form-group pt-2">
+          <select id="flowEquation" name="flowEquation" class="form-control">
+            <option value="0" selected>Select Flow Equation</option>
+            <option value="Stokes">Stokes</option>
+            <option value="Brinkman">Brinkman</option>
+          </select>
+        </div>
+
+        <!-- Mesh Refinement -->
+        <div class="form-group text-center mb-4 mt-4"  id="macro-radio-meshRefinement">
+          
+          <div class="custom-control custom-radio custom-control-inline">
+            
+            <input
+              type="radio"
+              id="coarseMesh"
+              name="meshRefinement"
+              value="coarseMesh"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" for="coarseMesh"
+              >Coarse Mesh</label
+            >
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="fineMesh"
+              value="fineMesh"
+              name="meshRefinement"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" for="fineMesh">Fine Mesh</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="evenFinerMesh"
+              value="evenFinerMesh"
+              name="meshRefinement"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" for="evenFinerMesh"
+              >Even Finer Mesh</label
+            >
+          </div>
+        </div>
+        
+                <!-- Extra Mesh refinements -->
+                <!-- <div class="collapse text-center mb-3 mt-0" id="extraMeshRefinement">
+                  <div class="form-group form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="checked"
+                      id="refineMesh"
+                      name="refineMesh"
+                    />
+                    <label class="form-check-label" for="refineMesh">
+                      Extra Mesh Refinement
+                    </label>
+                  </div>
+                </div> -->
+                
+
+
+        <hr/>
+
+        <!-- Inlet and Outlet Pressure -->
+
+        <div class="form-group text-center row pt-0 pb-0">
+          <div class="col-6 pt-0 pb-1">
+            <label for="inletPressure">Inlet Pressure:</label>
+            <input
+              type="number"
+              id="inletPressure"
+              name="inletPressure"
+              class="form-control"
+              step="0.00000000000000001"
+            />
+          </div>
+          <div class="col-6 pt-0 pb-1">
+            <label for="quantity">Outlet Pressure:</label>
+            <input
+              type="number"
+              id="outletPressure"
+              name="outletPressure"
+              class="form-control"
+              step="0.00000000000000001"
+            />
+          </div>
+        </div>
+
+        <!-- Fluid Viscosity -->
+
+        <div class="form-group text-center row justify-content-center pt-0 pb-1">
+          <div class="col-8 pt-0 pb-1 text-center justify-content-center">
+            <label for="fluidViscosity">Fluid Viscosity:</label>
+            <input
+              type="number"
+              id="fluidViscosity"
+              name="fluidViscosity"
+              class="form-control"
+              step="0.00000000000000001"
+            />
+          </div>
+        </div>
+
+
+        
+        <!-- Rock Matrix permeability -->
+
+        <div class="collapse" id="rockMatrixPerm">
+          <div
+            class="form-group text-center row justify-content-center pt-0"
+            id=""
+          >
+            <div class="col-8 pt-0 text-center justify-content-center">
+              <label for="rockMatrixPerm-input"
+                >Rock Matrix Permeability:</label
+              >
+              <input
+                type="number"
+                id="rockMatrixPerm-input"
+                name="rockMatrixPerm"
+                class="form-control"
+                step="0.00000000000000000001"
+              />
+            </div>
+          </div>
+        </div>
+        
+        <hr>
+        
+        <h6 class="text-center m-2">Pixel color that represents the free flow region:</h5>
+
+          <!-- Free flow pixel value -->
+  
+          <div class="form-group text-center mt-4 mb-4">
+            <div class="custom-control custom-radio custom-control-inline m-2">
+              <input
+                type="radio"
+                id="blackPixel"
+                value="black"
+                name="pixelFreeFlowValue"
+                class="custom-control-input"
+              />
+              <label class="custom-control-label" for="blackPixel">
+                <img
+                  src="{{ url_for('static', filename='img/blackSquare.png') }}"
+                  class="border border-primary rounded"
+                  width="15em"
+                />
+                Black pixel</label
+              >
+            </div>
+            <div class="custom-control custom-radio custom-control-inline m-2">
+              <input
+                type="radio"
+                id="whitePixel"
+                value="white"
+                name="pixelFreeFlowValue"
+                class="custom-control-input"
+              />
+              <label class="custom-control-label" for="whitePixel">
+                <img
+                  src="{{ url_for('static', filename='img/whiteSquare.png') }}"
+                  class="border border-primary rounded"
+                  width="15em"
+                />
+                White pixel</label
+              >
+            </div>
+          </div>
+
+
+        <!-- Upload Image -->
+
+        <div class="custom-file form-group">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="file-picker"
+            name="image-file"
+            accept="image/*"
+            required
+          />
+          <label class="custom-file-label" for="file-picker"
+            >Upload binary image ...</label
+          >
+        </div>
+        <br />
+        <div
+          class="alert alert-danger p-0 m-0"
+          id="alert-msg"
+          role="alert"
+          style="display: none;"
+        ></div>
+        <!-- <p id="alert-msg"></p> -->
+
+        <div class="container text-center" id="div-of-img">
+          <img
+            id="img-true-size"
+            class="mx-auto d-block m-4"
+            onload="checkBinary()"
+          />
+          <div
+            id="convert-btn-div"
+            class="text-center"
+            style="display: none;"
+            ;
+          >
+            <input
+              class="btn btn-primary convert-button m-4"
+              type="submit"
+              value="Simulate!"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br />
+  <!-- <canvas id="canvas"></canvas> -->
+  <br style="margin: 20px;" />
+</div>
+<br />
+<br />
+<br />
+
+{% endblock %} {% block script %}
+<script src="{{ url_for('static', filename='js-folder/Jquery-flowSolver.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rafael Simula</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/main.css')}}"
+    />
+    <link rel="icon" href="{{url_for('static', filename='img/marcio-icon.png')}}">
+  </head>
+  <body style="min-height: 100%;">
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"
+            ><img src="{{ url_for('static', filename='img/puc-rio.png')}}" height="50px" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Codes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">About</a>
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main style="min-height: 80%;">
+      {% block content %} {% endblock %}
+    </main>
+
+    <!--- Footer -->
+    <footer class="p-0" style="background-color: rgb(73, 73, 73);">
+      <div class="container-fluid">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='img/puc-rio.png')}}" width=60% alt="" />
+            <hr class="light" />
+            <p>+55 21 99181-4994</p>
+            <p>r.mouracruz@gmail.com</p>
+            <p>Rio de Janeiro, RJ, Brazil</p>
+          </div>
+          <div class="col-md-4">
+            <hr class="light" />
+            <h5>Contact Us</h5>
+            <hr class="light" />
+
+            <div class="col-12 social">
+              <a href="https://br.linkedin.com/company/lmmp-puc-rio"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://www.youtube.com/channel/UCcw81uqGd52OKQnxij-PWgg"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <hr class="light" />
+            <h5>Our Location</h5>
+            <hr class="light" />
+            <p style="margin-top: 1rem;">
+              Pontifícia Universidade Católica do Rio de Janeiro
+              <br />
+              Pe. Laércio Dias de Moura Building, 6 floor
+              <br />
+              R. Marquês de São Vicente, 225
+              <br />
+              Gávea - Rio de Janeiro - 22451-900 - Brasil
+            </p>
+          </div>
+          <div class="col-12 p-0" style="text-decoration: none;">
+            <hr class="light" style="width: 100%;" />
+            <a href="http://lmmp.mec.puc-rio.br/lmmp/">
+            <h5>&copy; lmmp.mec.puc-rio.br/</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    {% block script %} {% endblock %}
+  </body>
+</html>
