@@ -29,8 +29,8 @@ Element Method.
 ## Stokes Form
 
 <p align="center">
-  <img src="screenshots/stokesForm.png" width="400"/>
-  <img src="screenshots/stokesResults.png" width="400"/> 
+  <img src="screenshots/stokesForm.png" width="300"/>
+  <img src="screenshots/stokesResults.png" width="300"/> 
 </p>
 <br />
 
@@ -38,6 +38,6 @@ Element Method.
 
 <br />
 <p align="center">
-  <img src="screenshots/brinkmanForm.png" width="400"/>
-  <img src="screenshots/brinkmanResults.png" width="400"/> 
+  <img src="screenshots/brinkmanForm.png" width="300"/>
+  <img src="screenshots/brinkmanResults.png" width="300"/> 
 </p>
