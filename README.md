@@ -22,15 +22,15 @@ Element Method.
 #### Blank Form
 
 <p align="center">
-    <img src="screenshots/blankForm.png" width="100" />
+    <img src="screenshots/blankForm.png" width="400" />
 </p>
 <br />
 
 ## Stokes Form
 
 <p align="center">
-  <img src="screenshots/stokesForm.png" width="100"/>
-  <img src="screenshots/stokesResults.png" width="100"/> 
+  <img src="screenshots/stokesForm.png" width="400"/>
+  <img src="screenshots/stokesResults.png" width="400"/> 
 </p>
 <br />
 
@@ -38,6 +38,6 @@ Element Method.
 
 <br />
 <p align="center">
-  <img src="screenshots/brinkmanForm.png" width="100"/>
-  <img src="screenshots/brinkmanResults.png" width="100"/> 
+  <img src="screenshots/brinkmanForm.png" width="400"/>
+  <img src="screenshots/brinkmanResults.png" width="400"/> 
 </p>
